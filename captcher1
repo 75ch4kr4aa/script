@@ -1,0 +1,47 @@
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+import pyautogui
+import re
+import time
+import pytesseract
+import urllib.request
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+#Browser aufrufen und Internetseite öffnen
+browser=webdriver.Firefox()
+browser.get("https://defendtheweb.net/auth")
+time.sleep(2)
+#Einloggen
+login_username = browser.find_element_by_name('username')
+login_username.send_keys('XXXXXXX')
+login_password = browser.find_element_by_name('password')
+login_password.send_keys('XXXXXXXXXXXX')
+login_password.submit()
+#Captcher seite öffnen
+browser.get('https://defendtheweb.net/playground/captcha1')
+with open('captcher1.png', 'wb') as file:
+    file.write(browser.find_element_by_xpath('/html/body/div[2]/div/div[1]/div/div[2]/div/div[1]/div/p[1]/img').screenshot_as_png)
+#take a screenshot 
+#myScreenshot = pyautogui.screenshot()   
+#myScreenshot.save(r'/root/pytesseract/desk.jpeg')
+#load screenshot
+#img = Image.open('desk.jpeg')
+#beschneiden mit crop  
+#ima = img.crop((300,400,750,450))
+#ima.save(r'/root/pytesseract/desk2.jpeg')
+#sichern eines Bildes 
+#resource = urllib.request.urlretrieve("https://defendtheweb.net/extras/playground/captcha/captcha1.php", "picX.jpg")
+#sichern des bildes direkt von der URL
+#id = browser.get('https://defendtheweb.net/extras/playground/captcha/captcha1.php')
+# bild auslesen mit ocr google
+id = pytesseract.image_to_string(Image.open('captcher1.png'))[::-1]
+bt = id.split()
+dt = "".join(bt)
+print(dt)
+form_captcher = browser.find_element_by_name('answer')
+form_captcher.send_keys(id)
+form_captcher.submit()
+time.sleep(2)
