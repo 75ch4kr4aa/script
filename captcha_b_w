@@ -1,0 +1,48 @@
+from PIL import Image
+import sys
+
+input = "captcher1.png"
+im = Image.open(input)
+width = im.size[0]
+height = im.size[1]
+
+# split the image into individual bands
+source = im.split()
+
+R, G, B = 0, 1, 2
+
+# select regions where green is less than 100
+mask = source[G].point(lambda i: i < 100 and 225)
+#mask2 = source[G].point(lambda i: i > 140 and 0)
+# process the red band
+out = source[R].point(lambda i: i +221)
+out2 = source[B].point(lambda i: i +221)
+out3 = source[G].point(lambda i: i +221)
+#out4 = source[G].point(lambda i: i -119)
+# paste the processed band back, but only where red was < 100
+source[R].paste(out, None, mask)
+source[B].paste(out2, None, mask)
+source[G].paste(out3, None, mask)
+#source[G].paste(out4, None, mask2)
+# build a new multiband image
+im = Image.merge(im.mode, source)
+im.save("abklatsch.png")
+inputt = "abklatsch.png"
+imm = Image.open(inputt)
+width = im.size[0]
+height = im.size[1]
+
+for x in range(0, width):
+    for y in range(0, height):
+        pixel = (x, y)
+        rgb = im.getpixel(pixel)
+        print(rgb)
+
+source = imm.split()
+
+R, G, B = 0, 1, 2
+mask2 = source[G].point(lambda i: i < 130 and 225)
+out4 = source[G].point(lambda i: i -120)
+source[G].paste(out4, None, mask2)
+imm = Image.merge(imm.mode, source)
+imm.save("abklatsch2.png")
